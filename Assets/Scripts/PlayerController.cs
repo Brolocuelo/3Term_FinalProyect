@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    private const string Horizontal ="Horizontal";
+    private const string Horizontal = "Horizontal";
     public float speed = 15f;
 
     private Rigidbody playerRb;
     public float jumpForce;
-
     private bool isOnTheGround = true;
+
+    public GameObject bulletPrefab;
 
     private void Start()
     {
@@ -23,9 +24,14 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis(Horizontal);
         transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
 
-        if (Input.GetKeyDown(KeyCode.Space)&& isOnTheGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnTheGround)
         {
             Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            FireProjectile();
         }
     }
 
@@ -42,5 +48,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnTheGround = true;
         }
+    }
+
+    private void FireProjectile()
+    { 
+        Instantiate(bulletPrefab, transform.position, Quaternion.identity);
     }
 }
