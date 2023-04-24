@@ -7,12 +7,13 @@ public class BulletProperties : MonoBehaviour
     public float bulletSpeed = 15f;
     public float distanceLimit = 5f;
 
-    void Update()
+    private void Start()
+    {
+        Destroy(gameObject,3);
+    }
+
+    private void Update()
     {
         transform.Translate(Vector3.right * bulletSpeed * Time.deltaTime);
-        if(transform.position.x < distanceLimit)
-        {
-            Destroy(gameObject);
-        }
     }
 }
