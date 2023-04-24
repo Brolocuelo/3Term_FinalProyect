@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8239606539513057462}
   - component: {fileID: 8239606539513057463}
+  - component: {fileID: 1742784089247463537}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 15
   distanceLimit: 15
+--- !u!65 &1742784089247463537
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8239606539513057417}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8239606540241945720
 GameObject:
   m_ObjectHideFlags: 0
