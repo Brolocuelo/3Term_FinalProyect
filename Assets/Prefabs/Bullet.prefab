@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 15
-  distanceLimit: 15
+  distanceLimit: 5
 --- !u!65 &1742784089247463537
 BoxCollider:
   m_ObjectHideFlags: 0
