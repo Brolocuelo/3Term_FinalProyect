@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &23393634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7402751600824300774, guid: b4a130892ef5ae841b6072f39e708fd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7402751601273074734}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +508,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 88
   m_CollisionDetection: 0
 --- !u!114 &586409491
 MonoBehaviour:
@@ -517,12 +523,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  jumpForce: 5
-  Counter: 0
+  rotateSpeed: 3
+  jumpForce: 6
   dobleJumpUnlocked: 0
+  playerIndex: 0
   bulletPrefab: {fileID: 8239606539513057417, guid: 659ca3be474258c4e8f7ac7745aaa937,
     type: 3}
   bulletSpawnerTransform: {fileID: 2024731897}
+  gameOver: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +966,7 @@ PrefabInstance:
     - target: {fileID: 1502470813650618689, guid: d2dbae557dd5ab74f951086bff3d7457,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.85
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1502470813650618689, guid: d2dbae557dd5ab74f951086bff3d7457,
         type: 3}
@@ -1034,6 +1042,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7402751600824300771, guid: b4a130892ef5ae841b6072f39e708fd1,
+        type: 3}
+      propertyPath: collectable
+      value: 
+      objectReference: {fileID: 23393634}
     - target: {fileID: 7402751602601696132, guid: b4a130892ef5ae841b6072f39e708fd1,
         type: 3}
       propertyPath: m_Name

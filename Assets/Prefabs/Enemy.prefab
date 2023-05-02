@@ -140,7 +140,6 @@ MonoBehaviour:
   - {fileID: 8239606539513057462, guid: 659ca3be474258c4e8f7ac7745aaa937, type: 3}
   spawnPoint:
   - {fileID: 0}
-  Counter: 0
 --- !u!195 &2039529671
 NavMeshAgent:
   m_ObjectHideFlags: 0

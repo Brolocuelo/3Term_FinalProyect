@@ -25,10 +25,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform[] spawnPoint;
     private float timeBetweenAttacks;
     private bool canAttack;
-    private float upAttackForce = 5f;
-    private float forwardAttackForce = 8f;
+    //private float upAttackForce = 5f;
+    //private float forwardAttackForce = 8f;
 
-    public int Counter;
+    private int Counter;
+
+    private float yRange = 10f;
 
     private void Awake()
     {
@@ -128,5 +130,19 @@ public class EnemyController : MonoBehaviour
         //Esfera Ataque
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    private void SpawnEnemy()
+    {
+        Vector3 pos = transform.position;
+
+        if (pos.y < -yRange)
+        {
+            transform.position = new Vector3(10, 1, 0);
+        }
+        /*if (pos.y > yRange)
+        {
+            transform.position = new Vector3(pos.x, 0, pos.z);
+        }*/
     }
 }

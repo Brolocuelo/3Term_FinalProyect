@@ -4,39 +4,67 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Collactables collactables;
+    //private Collactables collactables;
 
     private const string Horizontal = "Horizontal";
+    private float moveDir;
     public float speed = 15f;
+    public float rotateSpeed = 3f;
 
     private Rigidbody playerRb;
     public float jumpForce;
     private bool isOnTheGround = true;
 
-    public int Counter;
+    private int jumpCounter;
     public bool dobleJumpUnlocked;
 
+    public int playerIndex;
+    private float yRange = 10f;
+
+    private int fireCounter;
+    private int hitsCounter;
     public GameObject bulletPrefab;
     public Transform bulletSpawnerTransform;
+    //private float timeBetweenAttacks;
+    private bool canFire;
+
+    public bool gameOver;
 
     private void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        collactables = FindObjectOfType<Collactables>();
+        //collactables = FindObjectOfType<Collactables>();
+        canFire = true;
+        fireCounter = 0;
     }
 
     private void Update()
     {
-        float horizontalInput = Input.GetAxis(Horizontal);
-        transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
+        Movement();
 
         Jump();
 
-        if (Input.GetMouseButtonDown(0))
+        SpawnPlayer();
+
+        if (Input.GetMouseButtonDown(0) && canFire)
         {
             FireProjectile();
         }
+
+        GameOver();
+    }
+
+    private void Movement()
+    {
+        float horizontalInput = Input.GetAxis(Horizontal);
+        transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
+
+        transform.LookAt(Vector3.right);
+        //moveDir = Vector3.left(rotateSpeed) *= -1;
+        //moveDir = Vector3.right(rotateSpeed) *= 1;
+
+        //transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
     }
 
     private void Jump()
@@ -46,11 +74,11 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnTheGround = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && (isOnTheGround || Counter < 2) && dobleJumpUnlocked)
+        if (Input.GetKeyDown(KeyCode.Space) && (isOnTheGround || jumpCounter < 2) && dobleJumpUnlocked)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnTheGround = false;
-            Counter++;
+            jumpCounter++;
         }
     }
 
@@ -65,12 +93,51 @@ public class PlayerController : MonoBehaviour
         if (otherCollider.gameObject.CompareTag("Ground"))
         {
             isOnTheGround = true;
-            Counter = 0;
+            jumpCounter = 0;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet") && hitsCounter >= 3)
+        {
+            gameOver = true;
+            Debug.Log("Game Over!");
+            Destroy(gameObject);
+            transform.position = new Vector3(0, 1, 0);
+        }
+    }
+
+    private void SpawnPlayer()
+    {
+        Vector3 pos = transform.position;
+
+        if (pos.y < -yRange)
+        {
+            transform.position = new Vector3(0, 0, 0);
         }
     }
 
     private void FireProjectile()
     { 
         Instantiate(bulletPrefab, bulletSpawnerTransform.position, Quaternion.identity);
+        fireCounter++;
+        if(fireCounter >= 6)
+        {
+            canFire = false;
+            StartCoroutine(AttackCoolDown());
+        }
+    }
+
+    private IEnumerator AttackCoolDown()
+    {
+        yield return new WaitForSeconds(3);
+        canFire = true;
+        fireCounter = 0;
+    }
+
+    private void GameOver()
+    {
+        Vector3 pos = transform.position;
     }
 }
