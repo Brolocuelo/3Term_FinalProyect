@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis(Horizontal);
         transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
 
-        transform.LookAt(Vector3.right);
+        //transform.LookAt(Vector3.right);
         //moveDir = Vector3.left(rotateSpeed) *= -1;
         //moveDir = Vector3.right(rotateSpeed) *= 1;
 
@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour
         if (pos.y < -yRange)
         {
             transform.position = new Vector3(0, 0, 0);
+            //transform.rotation{};
         }
     }
 
