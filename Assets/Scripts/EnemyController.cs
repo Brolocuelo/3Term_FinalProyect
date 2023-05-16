@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour
     private void Chase()
     {
         _agent.SetDestination(player.position);
-        transform.LookAt(player);
+        transform.LookAt(new Vector3 (player.position.x,0.5f,0));
     }
 
     private void Attack()

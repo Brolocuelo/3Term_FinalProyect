@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
 
     private const string Horizontal = "Horizontal";
     private float moveDir;
-    public float speed = 15f;
+    public float speed = 12f;
     public float rotateSpeed = 3f;
 
     private Rigidbody playerRb;
-    public float jumpForce;
+    public float jumpForce = 8f;
     private bool isOnTheGround = true;
 
     private int jumpCounter;
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         float horizontalInput = Input.GetAxis(Horizontal);
-        transform.Translate(Vector3.right * speed * Time.deltaTime * horizontalInput);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime * horizontalInput);
 
         //transform.LookAt(Vector3.right);
         //moveDir = Vector3.left(rotateSpeed) *= -1;
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
         if (pos.y < -yRange)
         {
-            transform.position = new Vector3(0, 0, 0);
+            transform.position = new Vector3(-52, 1, 0);
             //transform.rotation{};
         }
     }
