@@ -10,7 +10,8 @@ public class Spikes : MonoBehaviour
 
     /*private void OnCollisionEnter(Collider other)
     {
-        transform.position = new Vector3(0, 0, 0);
+        if()
+        transform.position = new Vector3(-52,1,0);
     }*/
 
 }

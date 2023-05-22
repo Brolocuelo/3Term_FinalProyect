@@ -596,7 +596,7 @@ MonoBehaviour:
   rotateSpeed: 3
   jumpForce: 8
   dobleJumpUnlocked: 0
-  playerIndex: 0
+  playerIndex: 1
   bulletPrefab: {fileID: 8239606539513057417, guid: 659ca3be474258c4e8f7ac7745aaa937,
     type: 3}
   bulletSpawnerTransform: {fileID: 8239606539513057462, guid: 659ca3be474258c4e8f7ac7745aaa937,

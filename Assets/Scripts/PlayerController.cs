@@ -95,6 +95,11 @@ public class PlayerController : MonoBehaviour
             isOnTheGround = true;
             jumpCounter = 0;
         }
+
+        if (otherCollider.gameObject.CompareTag("SpikesPlatform"))
+        {
+            transform.position = new Vector3(-52, 1, 0);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

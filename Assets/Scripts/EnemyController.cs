@@ -9,8 +9,8 @@ public class EnemyController : MonoBehaviour
 
     private NavMeshAgent _agent;
 
-    private float visionRange = 4f;
-    private float attackRange = 2f;
+    private float visionRange = 6f;
+    private float attackRange = 4f;
 
     private bool playerInVisionRange;
     private bool playerInAttackRange;
@@ -79,7 +79,7 @@ public class EnemyController : MonoBehaviour
             Attack();
         }
 
-        _agent.SetDestination(player.position);
+        //_agent.SetDestination(player.position);
     }
 
     private void Patrol()
