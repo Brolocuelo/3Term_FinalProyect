@@ -12,7 +12,9 @@ public class EnemyController : MonoBehaviour
     private float visionRange = 6f;
     private float attackRange = 4f;
 
+    [SerializeField]
     private bool playerInVisionRange;
+    [SerializeField]
     private bool playerInAttackRange;
 
     [SerializeField] private LayerMask playerLayer;
@@ -21,19 +23,24 @@ public class EnemyController : MonoBehaviour
     private int totalWaypoints;
     private int nextPoint;
 
-    [SerializeField] private Transform[] bullet;
+    [SerializeField] private Transform bullet;
     [SerializeField] private Transform[] spawnPoint;
     private float timeBetweenAttacks;
     private bool canAttack;
-    //private float upAttackForce = 5f;
-    //private float forwardAttackForce = 8f;
+    
+    private float upAttackForce = 5f;
+    private float forwardAttackForce = 8f;
 
     private int Counter;
 
     private float yRange = 10f;
 
+
+    public Transform firePoint;
+
     private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         _agent = GetComponent<NavMeshAgent>();
     }
 
@@ -74,12 +81,12 @@ public class EnemyController : MonoBehaviour
             Chase();
         }
 
-        if (!playerInVisionRange && playerInAttackRange)
+        if (playerInAttackRange)
         {
             Attack();
         }
 
-        //_agent.SetDestination(player.position);
+        
     }
 
     private void Patrol()
@@ -106,9 +113,10 @@ public class EnemyController : MonoBehaviour
     {
         if (canAttack)
         {
-            //Rigidbody rigidbody = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            //rigidbody.AddForce(transform.forward * forwardAttackForce, ForceMode.Impulse);
-            //rigidbody.AddForce(transform.up * upAttackForce, ForceMode.Impulse);
+            Vector3 forceDirection = player.position - firePoint.position;
+            Rigidbody rigidbody = Instantiate(bullet, firePoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rigidbody.AddForce(forceDirection.normalized * forwardAttackForce, ForceMode.Impulse);
+            rigidbody.AddForce(firePoint.up * upAttackForce, ForceMode.Impulse);
 
             canAttack = false;
             StartCoroutine(AttackCooldown());
@@ -140,9 +148,5 @@ public class EnemyController : MonoBehaviour
         {
             transform.position = new Vector3(10, 1, 0);
         }
-        /*if (pos.y > yRange)
-        {
-            transform.position = new Vector3(pos.x, 0, pos.z);
-        }*/
     }
 }

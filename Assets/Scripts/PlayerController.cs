@@ -7,9 +7,9 @@ public class PlayerController : MonoBehaviour
     //private Collactables collactables;
 
     private const string Horizontal = "Horizontal";
-    private float moveDir;
+    //private float moveDir;
     public float speed = 12f;
-    public float rotateSpeed = 3f;
+    //public float rotateSpeed = 3f;
 
     private Rigidbody playerRb;
     public float jumpForce = 8f;
@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     private int hitsCounter;
     public GameObject bulletPrefab;
     public Transform bulletSpawnerTransform;
-    //private float timeBetweenAttacks;
     private bool canFire;
 
     public bool gameOver;
@@ -60,11 +59,9 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis(Horizontal);
         transform.Translate(Vector3.forward * speed * Time.deltaTime * horizontalInput);
 
-        //transform.LookAt(Vector3.right);
+        transform.LookAt(Vector3.right*horizontalInput);
         //moveDir = Vector3.left(rotateSpeed) *= -1;
         //moveDir = Vector3.right(rotateSpeed) *= 1;
-
-        //transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
     }
 
     private void Jump()
@@ -109,7 +106,8 @@ public class PlayerController : MonoBehaviour
             gameOver = true;
             Debug.Log("Game Over!");
             Destroy(gameObject);
-            transform.position = new Vector3(0, 1, 0);
+            transform.position = new Vector3(-52, 1, 0);
+            SpawnPlayer();
         }
     }
 
@@ -120,7 +118,6 @@ public class PlayerController : MonoBehaviour
         if (pos.y < -yRange)
         {
             transform.position = new Vector3(-52, 1, 0);
-            //transform.rotation{};
         }
     }
 

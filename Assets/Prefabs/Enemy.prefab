@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1502470813650618693}
   - component: {fileID: 5705216519841748907}
   - component: {fileID: 2039529671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -130,16 +130,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  playerInVisionRange: 0
+  playerInAttackRange: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
-  bullet:
-  - {fileID: 8239606539513057462, guid: 659ca3be474258c4e8f7ac7745aaa937, type: 3}
+  bullet: {fileID: 8239606539513057462, guid: 659ca3be474258c4e8f7ac7745aaa937, type: 3}
   spawnPoint:
   - {fileID: 0}
+  firePoint: {fileID: 2705952552003048502}
 --- !u!195 &2039529671
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -174,7 +176,7 @@ GameObject:
   - component: {fileID: 1502470814515231403}
   - component: {fileID: 1502470814515231402}
   - component: {fileID: 1502470814515231405}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +194,8 @@ Transform:
   m_LocalPosition: {x: 0.6, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2705952552003048502}
   m_Father: {fileID: 1502470813650618689}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -260,3 +263,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!1 &7311231386972441851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2705952552003048502}
+  m_Layer: 6
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2705952552003048502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7311231386972441851}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -1.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1502470814515231404}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
