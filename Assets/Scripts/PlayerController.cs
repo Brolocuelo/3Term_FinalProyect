@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     public bool gameOver;
 
+    private Animator _animator;
+
     private void Start()
     {
         playerRb = GetComponent<Rigidbody>();
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
         //collactables = FindObjectOfType<Collactables>();
         canFire = true;
         fireCounter = 0;
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -57,9 +60,10 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         float horizontalInput = Input.GetAxis(Horizontal);
+        _animator.SetTrigger("Walking");
         transform.Translate(Vector3.forward * speed * Time.deltaTime * horizontalInput);
 
-        transform.LookAt(Vector3.right*horizontalInput);
+        //transform.LookAt(Vector3.right*horizontalInput);
         //moveDir = Vector3.left(rotateSpeed) *= -1;
         //moveDir = Vector3.right(rotateSpeed) *= 1;
     }
@@ -70,6 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnTheGround = false;
+            _animator.SetTrigger("Jumping");
         }
         if (Input.GetKeyDown(KeyCode.Space) && (isOnTheGround || jumpCounter < 2) && dobleJumpUnlocked)
         {
@@ -95,6 +100,7 @@ public class PlayerController : MonoBehaviour
 
         if (otherCollider.gameObject.CompareTag("SpikesPlatform"))
         {
+            _animator.SetBool("Death1", true);
             transform.position = new Vector3(-52, 1, 0);
         }
     }
@@ -142,5 +148,6 @@ public class PlayerController : MonoBehaviour
     private void GameOver()
     {
         Vector3 pos = transform.position;
+        _animator.SetBool("Death", true);
     }
 }

@@ -11,4 +11,8 @@ public class BulletProperties : MonoBehaviour
     {
         Destroy(gameObject,3);
     }
+    private void Update()
+    {
+        transform.Translate(transform.right * bulletSpeed * Time.deltaTime);
+    }
 }
