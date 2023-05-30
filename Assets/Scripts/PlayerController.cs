@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        //collactables = FindObjectOfType<Collactables>();
         canFire = true;
         fireCounter = 0;
         _animator = GetComponent<Animator>();
@@ -128,7 +127,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FireProjectile()
-    { 
+    {
+        _animator.SetBool("FireProjectile", true);
         Instantiate(bulletPrefab, bulletSpawnerTransform.position, Quaternion.identity);
         fireCounter++;
         if(fireCounter >= 6)
@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator AttackCoolDown()
     {
+        _animator.SetBool("Idle", true);
         yield return new WaitForSeconds(3);
         canFire = true;
         fireCounter = 0;
