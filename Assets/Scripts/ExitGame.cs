@@ -8,11 +8,11 @@ public class ExitGame : MonoBehaviour
 
     void Start()
     {
-        ExitGame();
+        ExitGameFunction();
     }
 
-    private void ExitGame()
+    private void ExitGameFunction()
     {
-
+        Application.Quit();
     }
 }

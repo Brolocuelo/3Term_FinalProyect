@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public int playerIndex;
     private float yRange = 10f;
+    public Vector3 StartPos = new Vector3(-52, 1, 0);
 
     private int fireCounter;
     private int hitsCounter;
@@ -98,12 +99,6 @@ public class PlayerController : MonoBehaviour
             isOnTheGround = true;
             jumpCounter = 0;
         }
-
-        if (otherCollider.gameObject.CompareTag("SpikesPlatform"))
-        {
-            _animator.SetBool("Death1", true);
-            transform.position = new Vector3(-52, 1, 0);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -149,9 +144,15 @@ public class PlayerController : MonoBehaviour
         fireCounter = 0;
     }
 
+    public void DeathBySpikes()
+    {
+        _animator.SetBool("Death1", true);
+        transform.position = StartPos;
+    }
+
     private void GameOver()
     {
-        Vector3 pos = transform.position;
+        transform.position = StartPos;
         _animator.SetBool("Death", true);
     }
 }

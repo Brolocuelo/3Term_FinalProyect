@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-
-    // private float playerPosition;
-
-    /*private void OnCollisionEnter(Collider other)
+    private void OnCollisionEnter(Collider other)
     {
-        if()
-        transform.position = new Vector3(-52,1,0);
-    }*/
-
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerController>().DeathBySpikes();
+        }
+    }
 }
