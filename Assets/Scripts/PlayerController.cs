@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _animator.SetBool("Death1", true);
+        _animator.SetBool("Idle", true);
         playerRb = GetComponent<Rigidbody>();
         playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         canFire = true;
@@ -133,6 +135,7 @@ public class PlayerController : MonoBehaviour
         fireCounter++;
         if(fireCounter >= 6)
         {
+            _animator.SetBool("FireProjectile", false);
             canFire = false;
             StartCoroutine(AttackCoolDown());
         }
