@@ -28,8 +28,8 @@ public class EnemyController : MonoBehaviour
     private float timeBetweenAttacks = 5;
     private bool canAttack;
     
-    private float upAttackForce = 5f;
-    private float forwardAttackForce = 8f;
+    //private float upAttackForce = 5f;
+    //private float forwardAttackForce = 8f;
 
     private int Counter;
 

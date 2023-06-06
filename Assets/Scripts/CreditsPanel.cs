@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CreditsPanel : MonoBehaviour
 {
-    public GameObject credits;
+    public GameObject CreditsButton;
 
     public void OpenCreditsPanel()
     {
-        credits.SetActive(true);
+        CreditsButton.SetActive(true);
     }
 
     public void CloseCreditsPanel()
     {
-        credits.SetActive(false);
+        CreditsButton.SetActive(false);
     }
 }

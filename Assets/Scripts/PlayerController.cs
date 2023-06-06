@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         float horizontalInput = Input.GetAxis(Horizontal);
-        _animator.SetTrigger("Walking");
+        //_animator.SetTrigger("Walking");
         transform.Translate(Vector3.forward * speed * Time.deltaTime * horizontalInput);
 
         //transform.LookAt(Vector3.right*horizontalInput);
@@ -153,6 +153,6 @@ public class PlayerController : MonoBehaviour
     private void GameOver()
     {
         transform.position = StartPos;
-        _animator.SetBool("Death", true);
+        //_animator.SetBool("Death", true);
     }
 }
