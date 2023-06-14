@@ -28,7 +28,6 @@ public class EnemyController : MonoBehaviour
     private float timeBetweenAttacks = 5;
     private bool canAttack;
     
-    //private float upAttackForce = 5f;
     //private float forwardAttackForce = 8f;
 
     private int Counter;
@@ -117,7 +116,6 @@ public class EnemyController : MonoBehaviour
             Instantiate(bullet, firePoint.position, firePoint.rotation);
             //Rigidbody rigidbody = Instantiate(bullet, firePoint.position, Quaternion.identity).GetComponent<Rigidbody>();
             //rigidbody.AddForce(forceDirection.normalized * forwardAttackForce, ForceMode.Impulse);
-            //rigidbody.AddForce(firePoint.up * upAttackForce, ForceMode.Impulse);
 
             canAttack = false;
             StartCoroutine(AttackCooldown());

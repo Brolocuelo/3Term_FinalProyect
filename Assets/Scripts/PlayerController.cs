@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //private Collactables collactables;
 
     private const string Horizontal = "Horizontal";
     //private float moveDir;
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _animator.SetBool("Death1", true);
+        _animator.SetBool("Death1", false);
         _animator.SetBool("Idle", true);
         playerRb = GetComponent<Rigidbody>();
         playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -125,12 +124,12 @@ public class PlayerController : MonoBehaviour
 
     private void FireProjectile()
     {
-        _animator.SetBool("FireProjectile", true);
+        //_animator.SetBool("FireProjectile", true);
         Instantiate(bulletPrefab, bulletSpawnerTransform.position, Quaternion.identity);
         fireCounter++;
         if(fireCounter >= 6)
         {
-            _animator.SetBool("FireProjectile", false);
+            //_animator.SetBool("FireProjectile", false);
             canFire = false;
             StartCoroutine(AttackCoolDown());
         }
@@ -138,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator AttackCoolDown()
     {
-        _animator.SetBool("Idle", true);
+        //_animator.SetBool("Idle", true);
         yield return new WaitForSeconds(3);
         canFire = true;
         fireCounter = 0;
@@ -146,7 +145,7 @@ public class PlayerController : MonoBehaviour
 
     public void DeathBySpikes()
     {
-        _animator.SetBool("Death1", true);
+        //_animator.SetBool("Death1", true);
         transform.position = StartPos;
     }
 
